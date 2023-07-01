@@ -6,7 +6,6 @@ const App = () => {
   return (
     <Routes>
       <Route path="/*" element={<MainLayout />} />
-      <Route path="*" element={<MainLayout />} />
     </Routes>
   )
 }
