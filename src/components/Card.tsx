@@ -17,7 +17,15 @@ const Card = ({ good }: CardType) => {
   return (
     <div className="bg-white/20 card-shadow flex flex-col">
       <div className="basis-14 border-b flex items-center px-3 text-ellipsis overflow-hidden">
-        <div className="tracking-wider font-semibold">{name}</div>
+        <div
+          className="tracking-wider font-semibold"
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            textOverflow: 'ellipsis',
+          }}
+        >{name}</div>
       </div>
       <div className="p-3 flex h-60">
         <img src={image_url} alt={name} className="basis-32 h-48 object-contain" />
