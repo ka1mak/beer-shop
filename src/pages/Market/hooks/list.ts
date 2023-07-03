@@ -21,7 +21,7 @@ const useList = () => {
       .finally(() => {
         setTimeout(() => {
           setIsLoading(false)
-        }, 500)
+        }, 1000)
       })
   }, [page, perPage])
 
