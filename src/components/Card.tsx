@@ -46,11 +46,3 @@ const Card = ({ good }: CardType) => {
 }
 
 export default Card
-
-  // < div className = "flex justify-center" >
-  //   <img src={image_url} alt={name} className="w-24 h-48 object-contain" />
-  //     </ >
-  // <div className="">
-  //   <div className="truncate mb-4 px-2 border-b">{name}</div>
-  //   <button className="border border-slate-400 px-4 rounded-md py-1">В корзину</button>
-  // </div>
