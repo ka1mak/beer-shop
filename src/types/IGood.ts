@@ -1,5 +1,6 @@
 export interface IGood {
   id: number
   name: string
-  desciption: string
+  description: string
+  image_url: string
 }
