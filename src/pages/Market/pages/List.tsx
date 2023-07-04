@@ -16,11 +16,18 @@ export const List = () => {
     <>
       <PageTitle title="Список товаров" />
 
-      <div className="grid phone:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-5 px-10 py-5">
+      <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
         {
           isLoading
-          ? loader()
-          : allGoods.map(good => <Card good={good} key={good.id} /> )}
+            ? loader()
+            : allGoods.map(good => (
+              <div
+                key={good.id}
+                className="flex-1 basis-[150px] tablet:basis-[220px] laptop:basis-[250px]"
+              >
+                <Card good={good} />
+              </div>
+            ))}
       </div>
     </>
   )

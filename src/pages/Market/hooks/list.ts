@@ -6,7 +6,7 @@ const useList = () => {
   const [allGoods, setAllGoods] = React.useState<GoodTypes.Card[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
   const [page, setPage] = React.useState(3)
-  const [perPage, setPerPage] = React.useState(12) // TODO rename to limit
+  const [perPage, setPerPage] = React.useState(10) // TODO rename to limit
 
   const getAll = React.useCallback(async () => {
     setIsLoading(true)

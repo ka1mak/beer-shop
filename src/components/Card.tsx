@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsCartPlus, BsCartCheck } from 'react-icons/bs'
+import { BsCart3, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import { GoodTypes } from 'types/good'
 
 interface Props {
@@ -9,59 +9,36 @@ interface Props {
 const Card = ({
   good
 }: Props) => {
-  const { name, image_url, description } = good
-  const [inBucket, setInBucket] = React.useState(false)
-
-  const toggleBucket = () => {
-    setInBucket(prev => !prev)
-  }
+  const { name, image_url } = good
 
   return (
-    <div className="bg-white/20 card-shadow flex flex-col">
-      <div className="basis-14 border-b flex items-center px-3 text-ellipsis overflow-hidden">
-        <div
-          className="tracking-wider font-semibold"
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            textOverflow: 'ellipsis',
-          }}
-        >{name}</div>
-      </div>
-
-      <div className="p-3 flex h-60">
-        <img 
-          src={image_url} 
-          alt={name} 
-          className="basis-32 h-48 object-contain" 
-        />
-        <div className="w-full h-full text-base overflow-hidden pl-2">
-          <div
-            className="h-full overflow-hidden"
-            style={{
-              display: '-webkit-box',
-              WebkitLineClamp: 9,
-              WebkitBoxOrient: 'vertical',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            {description}
+    <div className="mb-2 mx-1">
+      <div className="bg-slate-50 p-2 rounded-md">
+        <div className="bg-white rounded-md p-2">
+          <img
+            className="w-full h-48 object-contain"
+            src={image_url}
+            alt={name}
+          />
+        </div>
+        <div className="p-1 tablet:p-2 laptop:px-3">
+          <div className="truncate w-[120px] tablet:w-[220px] laptop:w-[200px] text-sm">{name}</div>
+          <div className="flex items-center mt-1">
+            <span className="text-orange-400 font-bold phone:text-sm tablet:text-lg">${(Math.random() * 3).toFixed(2)}</span>
+            <del className="phone:text-[11px] tablet:text-sm ml-1">$4.52</del>
+            <button className="ml-auto phone:text-xl tablet:text-2xl"><BsCart3 /></button>
+          </div>
+          <div className="flex items-center phone:text-sm tablet:text-base laptop:text-sm">
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarHalf />
+            <span className="ml-1">
+              {Math.floor(Math.random() * 3)},{Math.floor(Math.random() * (1000 - 100) + 100)}
+            </span>
           </div>
         </div>
-      </div>
-
-      <div className="px-3 py-3 flex justify-end space-x-2">
-        <button 
-          className="text-2xl px-3 py-px rounded-md" 
-          onClick={toggleBucket}
-        >
-          {inBucket ? <BsCartCheck /> : <BsCartPlus />}
-        </button>
-
-        <button 
-          className="underline px-3 py-px rounded-md" 
-        >Подробнее</button>
       </div>
     </div>
   )
