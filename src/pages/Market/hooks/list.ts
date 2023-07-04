@@ -1,28 +1,26 @@
-import React, { useCallback } from 'react'
-import { IGood } from 'types/IGood'
+import React from 'react'
 import { Market } from '..'
+import { GoodTypes } from 'types/good'
 
 const useList = () => {
-  const [allGoods, setAllGoods] = React.useState<IGood[]>([]) 
-  const [isLaoding, setIsLoading] = React.useState<boolean>(false)
-  const [page, setPage] = React.useState<number>(3)
-  const [perPage, setPerPage] = React.useState<number>(12)
+  const [allGoods, setAllGoods] = React.useState<GoodTypes.Card[]>([])
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [page, setPage] = React.useState(3)
+  const [perPage, setPerPage] = React.useState(12) // TODO rename to limit
 
-  const getAll = useCallback(() => {
-    const request = Market.API.List.getAll(page, perPage)
-
+  const getAll = React.useCallback(async () => {
     setIsLoading(true)
-    request
-      .then(res => {
-        const data = res.data
 
-        setAllGoods(data)
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 1000)
-      })
+    try {
+      const { data } = await Market.API.List.getAll(page, perPage)
+
+      setAllGoods(data)
+
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setIsLoading(false)
+    }
   }, [page, perPage])
 
   React.useEffect(() => {
@@ -34,7 +32,7 @@ const useList = () => {
       setPage,
       setPerPage,
     },
-    isLaoding,
+    isLoading,
     allGoods,
   }
 }

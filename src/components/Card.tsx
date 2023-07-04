@@ -1,17 +1,19 @@
 import React from 'react'
-import { IGood } from 'types/IGood'
 import { BsCartPlus, BsCartCheck } from 'react-icons/bs'
+import { GoodTypes } from 'types/good'
 
-interface CardType {
-  good: IGood
+interface Props {
+  good: GoodTypes.Card
 }
 
-const Card = ({ good }: CardType) => {
+const Card = ({
+  good
+}: Props) => {
   const { name, image_url, description } = good
-  const [inBucket, setInBucket] = React.useState<boolean>(false)
+  const [inBucket, setInBucket] = React.useState(false)
 
   const toggleBucket = () => {
-    setInBucket(!inBucket)
+    setInBucket(prev => !prev)
   }
 
   return (
@@ -27,8 +29,13 @@ const Card = ({ good }: CardType) => {
           }}
         >{name}</div>
       </div>
+
       <div className="p-3 flex h-60">
-        <img src={image_url} alt={name} className="basis-32 h-48 object-contain" />
+        <img 
+          src={image_url} 
+          alt={name} 
+          className="basis-32 h-48 object-contain" 
+        />
         <div className="w-full h-full text-base overflow-hidden pl-2">
           <div
             className="h-full overflow-hidden"
@@ -43,11 +50,18 @@ const Card = ({ good }: CardType) => {
           </div>
         </div>
       </div>
+
       <div className="px-3 py-3 flex justify-end space-x-2">
-        <button className="text-2xl px-3 py-px rounded-md" onClick={toggleBucket}>
+        <button 
+          className="text-2xl px-3 py-px rounded-md" 
+          onClick={toggleBucket}
+        >
           {inBucket ? <BsCartCheck /> : <BsCartPlus />}
         </button>
-        <button className="underline px-3 py-px rounded-md" onClick={toggleBucket}>Подбронее</button>
+
+        <button 
+          className="underline px-3 py-px rounded-md" 
+        >Подробнее</button>
       </div>
     </div>
   )

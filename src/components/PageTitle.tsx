@@ -25,6 +25,7 @@ const PageTitle: React.FC<PageTitleTypes> = ({
         )}
         <div>{title}</div>
       </div>
+
       <div>
         <input
           type="text"

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAppSelector } from 'hooks/redux'
 import { Route, Routes } from 'react-router-dom'
-import { Sidebar } from 'components'
+import Sidebar from 'layouts/Sidebar'
 import { Market } from './Market'
 
 const MainLayout = () => {
@@ -9,10 +9,11 @@ const MainLayout = () => {
 
   return (
     <div className={`${theme} min-h-screen`}>
-      <Sidebar />
-      <Routes>
-        <Route path='/market/*' element={<Market.Pages />} />
-      </Routes>
+      <Sidebar>
+        <Routes>
+          <Route path='/market/*' element={<Market.Pages />} />
+        </Routes>
+      </Sidebar>
     </div>
   )
 }
