@@ -1,6 +1,9 @@
 import React from 'react'
-import { BsCart3, BsStarFill, BsStarHalf } from 'react-icons/bs'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
+import { appSlice } from 'store/reducers/appSlice'
 import { GoodTypes } from 'types/good'
+
+import { BsCartPlus, BsStarFill, BsStarHalf, BsCartXFill } from 'react-icons/bs'
 
 interface Props {
   good: GoodTypes.Card
@@ -9,7 +12,19 @@ interface Props {
 const Card = ({
   good
 }: Props) => {
-  const { name, image_url } = good
+  const [goodInBucket, setGoodInBuket] = React.useState(false)
+  const dispatch = useAppDispatch()
+  const bucket = useAppSelector(state => state.appSlice.bucket)
+  const { addToBucket, removeFromBucket } = appSlice.actions
+  const { name, image_url, id } = good
+
+  React.useEffect(() => {
+    if (bucket.includes(id)) {
+      setGoodInBuket(true)
+    } else {
+      setGoodInBuket(false)
+    }
+  }, [bucket, id])
 
   return (
     <div className="mb-2 mx-1">
@@ -26,7 +41,13 @@ const Card = ({
           <div className="flex items-center mt-1">
             <span className="text-orange-400 font-bold phone:text-sm tablet:text-lg">${(Math.random() * 3).toFixed(2)}</span>
             <del className="phone:text-[11px] tablet:text-sm ml-1">$4.52</del>
-            <button className="ml-auto phone:text-xl tablet:text-2xl"><BsCart3 /></button>
+            <div className="ml-auto phone:text-xl tablet:text-2xl">
+              {
+                goodInBucket
+                  ? <button onClick={() => dispatch(removeFromBucket(id))}><BsCartXFill /></button>
+                  : <button onClick={() => dispatch(addToBucket(id))}><BsCartPlus /></button>
+              }
+            </div>
           </div>
           <div className="flex items-center phone:text-sm tablet:text-base laptop:text-sm">
             <BsStarFill />
