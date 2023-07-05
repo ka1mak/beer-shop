@@ -14,7 +14,7 @@ export const List = () => {
 
   return (
     <>
-      <PageTitle title="Список товаров" />
+      <PageTitle title="Список товаров" path="Market/" />
 
       <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
         {

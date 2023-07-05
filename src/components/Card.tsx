@@ -22,7 +22,7 @@ const Card = ({
           />
         </div>
         <div className="p-1 tablet:p-2 laptop:px-3">
-          <div className="truncate w-[120px] tablet:w-[220px] laptop:w-[200px] text-sm">{name}</div>
+          <div className="truncate w-[120px] tablet:w-[220px] laptop:w-[200px] text-sm font-semibold">{name}</div>
           <div className="flex items-center mt-1">
             <span className="text-orange-400 font-bold phone:text-sm tablet:text-lg">${(Math.random() * 3).toFixed(2)}</span>
             <del className="phone:text-[11px] tablet:text-sm ml-1">$4.52</del>

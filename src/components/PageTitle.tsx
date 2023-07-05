@@ -3,6 +3,7 @@ import { BsArrowLeftCircle } from 'react-icons/bs'
 
 interface PageTitleTypes {
   title: string
+  path: string
   withBack?: boolean
   onBack?: () => void
   BackContent?: (props: React.ComponentProps<'svg'>) => JSX.Element
@@ -10,6 +11,7 @@ interface PageTitleTypes {
 
 const PageTitle: React.FC<PageTitleTypes> = ({
   title,
+  path,
   BackContent = BsArrowLeftCircle,
   onBack,
   withBack,
@@ -24,14 +26,7 @@ const PageTitle: React.FC<PageTitleTypes> = ({
           />
         )}
         <div>{title}</div>
-      </div>
-
-      <div>
-        <input
-          type="text"
-          className="hidden tablet:inline bg-black/10 rounded-md px-3 py-1 outline-none border"
-          placeholder="Искать"
-        />
+        <div className="text-sm text-slate-400">{path}</div>
       </div>
     </div>
   )
