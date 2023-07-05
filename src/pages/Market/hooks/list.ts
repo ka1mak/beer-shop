@@ -6,7 +6,7 @@ const useList = () => {
   const [allGoods, setAllGoods] = React.useState<GoodTypes.Card[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
   const [page, setPage] = React.useState(3)
-  const [perPage, setPerPage] = React.useState(10) // TODO rename to limit
+  const [perPage, setPerPage] = React.useState(10) // параметром perPage заменен limit на бэке  
 
   const getAll = React.useCallback(async () => {
     setIsLoading(true)
@@ -19,7 +19,9 @@ const useList = () => {
     } catch (e) {
       console.log(e)
     } finally {
-      setIsLoading(false)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1000) // дана секунда для подгрузки картинок
     }
   }, [page, perPage])
 

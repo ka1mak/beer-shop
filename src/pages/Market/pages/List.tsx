@@ -10,7 +10,7 @@ export const List = () => {
     allGoods,
   } = Market.Hooks.List.use()
 
-  const loader = () => allGoods.map(() => <CardSkeleton />)
+  const loader = () => allGoods.map(({ id }) => <CardSkeleton key={id} />)
 
   return (
     <>
@@ -27,7 +27,8 @@ export const List = () => {
               >
                 <Card good={good} />
               </div>
-            ))}
+            ))
+        }
       </div>
     </>
   )
