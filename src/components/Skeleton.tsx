@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from "react-content-loader"
 
-const CardSkeleton: React.FC = (props) => {
+const Skeleton: React.FC = (props) => {
   return (
     <div className="flex-1 basis-[150px] tablet:basis-[220px] laptop:basis-[250px]">
       <div className="mb-2 mx-1">
@@ -21,4 +21,4 @@ const CardSkeleton: React.FC = (props) => {
   )
 }
 
-export default CardSkeleton
+export default Skeleton

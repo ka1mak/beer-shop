@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bucket } from '..'
 
-import CardSkeleton from 'components/Skeleton/Card'
+import CardSkeleton from 'components/Skeleton'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 

@@ -4,10 +4,10 @@ import MainLayout from 'pages/MainLayout'
 
 const App = () => {
   const navigate = useNavigate()
-  
+
   React.useEffect(() => {
     navigate('/market')
-  }, [])
+  }, [navigate])
 
   return (
     <Routes>

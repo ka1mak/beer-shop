@@ -2,7 +2,7 @@ import React from 'react'
 import { Market } from '..'
 import Card from 'components/Card'
 import PageTitle from 'components/PageTitle'
-import CardSkeleton from 'components/Skeleton/Card'
+import Skeleton from 'components/Skeleton'
 import Pagination from 'components/Pagination'
 
 export const List = () => {
@@ -11,7 +11,7 @@ export const List = () => {
     allGoods,
   } = Market.Hooks.List.use()
 
-  const loader = () => allGoods.map(({ id }) => <CardSkeleton key={id} />)
+  const loader = () => [...new Array(30)].map((_, i) => <Skeleton key={i} />)
 
   return (
     <div className="min-h-screen">

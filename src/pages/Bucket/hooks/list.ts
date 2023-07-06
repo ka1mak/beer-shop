@@ -26,7 +26,7 @@ const useList = () => {
 
   React.useEffect(() => {
     getAll(ids)
-  }, [ids])
+  }, [ids, getAll])
 
   return {
     isLoading,
