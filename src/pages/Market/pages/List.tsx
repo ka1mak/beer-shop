@@ -20,14 +20,7 @@ export const List = () => {
         {
           isLoading
             ? loader()
-            : allGoods.map(good => (
-              <div
-                key={good.id}
-                className="flex-1 basis-[150px] tablet:basis-[220px] laptop:basis-[250px]"
-              >
-                <Card good={good} />
-              </div>
-            ))
+            : allGoods.map(good => <Card good={good} key={good.id} />)
         }
       </div>
     </>
