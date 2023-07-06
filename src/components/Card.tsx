@@ -1,79 +1,77 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { appSlice } from 'store/reducers/appSlice';
-import { GoodTypes } from 'types/good';
-import { BsCartPlus, BsStarFill, BsStarHalf, BsCartXFill } from 'react-icons/bs';
+import React from 'react'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
+import { appSlice } from 'store/reducers/appSlice'
+import { GoodTypes } from 'types/good'
+import { BsCartPlus, BsStarFill, BsStarHalf, BsCartXFill } from 'react-icons/bs'
 
 interface Props {
-  good: GoodTypes.Card;
+  good: GoodTypes.Card
 }
 
 const Card: React.FC<Props> = ({ good }) => {
-  const { addToBucket, removeFromBucket } = appSlice.actions;
-  const dispatch = useAppDispatch();
-  const bucket = useAppSelector((state) => state.appSlice.bucket);
-  const { name, image_url, id } = good;
+  const { addToBucket, removeFromBucket } = appSlice.actions
+  const dispatch = useAppDispatch()
+  const bucket = useAppSelector((state) => state.appSlice.bucket)
+  const { name, image_url, id } = good
 
-  const [goodInBucket, setGoodInBucket] = useState(() => bucket.includes(id));
+  const [goodInBucket, setGoodInBucket] = React.useState(() => bucket.includes(id))
 
-  useEffect(() => {
-    setGoodInBucket(bucket.includes(id));
-  }, [bucket, id]);
+  React.useEffect(() => {
+    setGoodInBucket(bucket.includes(id))
+  }, [bucket, id])
 
   const handleAddToBucket = () => {
-    dispatch(addToBucket(id));
-  };
+    dispatch(addToBucket(id))
+  }
 
   const handleRemoveFromBucket = () => {
-    dispatch(removeFromBucket(id));
-  };
+    dispatch(removeFromBucket(id))
+  }
 
-  const price = useMemo(() => (Math.random() * 3).toFixed(2), []);
-  const rating = useMemo(() => Math.floor(Math.random() * (1000 - 100) + 100), []);
+  const price = React.useMemo(() => (Math.random() * 3).toFixed(2), [])
+  const rating = React.useMemo(() => Math.floor(Math.random() * (1000 - 100) + 100), [])
 
   return (
-    <div className="flex-1 basis-[150px] tablet:basis-[220px] laptop:basis-[250px]">
-      <div className="mb-2 mx-1">
-        <div className="bg-slate-50 p-2 rounded-md">
-          <div className="bg-white rounded-md p-2">
-            <img
-              className="w-full h-48 object-contain"
-              src={image_url}
-              alt={name}
-            />
+    <div className="mb-2 mx-1">
+      <div className="bg-slate-50 p-2 rounded-md">
+        <div className="bg-white rounded-md p-2">
+          <img
+            className="w-full h-48 object-contain"
+            src={image_url}
+            alt={name}
+          />
+        </div>
+        <div className="p-1 tablet:p-2 laptop:px-3">
+          <div className="truncate w-[120px] tablet:w-[220px] laptop:w-[200px] text-sm font-semibold">{name}</div>
+          <div className="flex items-center mt-1">
+            <span className="text-orange-400 font-bold phone:text-sm tablet:text-lg">${price}</span>
+            <del className="phone:text-[11px] tablet:text-sm ml-1">$4.52</del>
+            <div className="ml-auto phone:text-xl tablet:text-2xl">
+              {goodInBucket ? (
+                <button onClick={handleRemoveFromBucket}>
+                  <BsCartXFill />
+                </button>
+              ) : (
+                <button onClick={handleAddToBucket}>
+                  <BsCartPlus />
+                </button>
+              )}
+            </div>
           </div>
-          <div className="p-1 tablet:p-2 laptop:px-3">
-            <div className="truncate w-[120px] tablet:w-[220px] laptop:w-[200px] text-sm font-semibold">{name}</div>
-            <div className="flex items-center mt-1">
-              <span className="text-orange-400 font-bold phone:text-sm tablet:text-lg">${price}</span>
-              <del className="phone:text-[11px] tablet:text-sm ml-1">$4.52</del>
-              <div className="ml-auto phone:text-xl tablet:text-2xl">
-                {goodInBucket ? (
-                  <button onClick={handleRemoveFromBucket}>
-                    <BsCartXFill />
-                  </button>
-                ) : (
-                  <button onClick={handleAddToBucket}>
-                    <BsCartPlus />
-                  </button>
-                )}
-              </div>
-            </div>
-            <div className="flex items-center phone:text-sm tablet:text-base laptop:text-sm">
-              <BsStarFill />
-              <BsStarFill />
-              <BsStarFill />
-              <BsStarFill />
-              <BsStarHalf />
-              <span className="ml-1">
-                0.{rating}
-              </span>
-            </div>
+          <div className="flex items-center phone:text-sm tablet:text-base laptop:text-sm">
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarFill />
+            <BsStarHalf />
+            <span className="ml-1">
+              0.{rating}
+            </span>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
