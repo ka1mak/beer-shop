@@ -14,7 +14,7 @@ export const List = () => {
   const loader = () => allGoods.map(({ id }) => <CardSkeleton key={id} />)
 
   return (
-    <>
+    <div className="min-h-screen">
       <PageTitle title="Список товаров" path="Market/" />
 
       <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
@@ -26,6 +26,6 @@ export const List = () => {
       </div>
 
       <Pagination />
-    </>
+    </div>
   )
 }

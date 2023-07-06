@@ -12,7 +12,7 @@ export const List = () => {
   console.log(goods)
 
   return (
-    <>
+    <div className="min-h-screen">
       <PageTitle title="Корзина" path="Bucket /" />
 
       <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
@@ -22,6 +22,6 @@ export const List = () => {
             : goods.map(good => <Card good={good} key={good.id} />)
         }
       </div>
-    </>
+    </div>
   )
 }
