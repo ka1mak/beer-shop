@@ -1,18 +1,18 @@
 import React from 'react'
 import { Market } from '..'
 import { GoodTypes } from 'types/good'
+import { useAppSelector } from 'hooks/redux'
 
 const useList = () => {
+  const page = useAppSelector(state => state.appSlice.currentPage)
   const [allGoods, setAllGoods] = React.useState<GoodTypes.Card[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
-  const [page, setPage] = React.useState(3)
-  const [perPage, setPerPage] = React.useState(10) // параметром perPage заменен limit на бэке  
 
   const getAll = React.useCallback(async () => {
     setIsLoading(true)
 
     try {
-      const { data } = await Market.API.List.getAll(page, perPage)
+      const { data } = await Market.API.List.getAll(page, 30)
 
       setAllGoods(data)
 
@@ -23,19 +23,16 @@ const useList = () => {
         setIsLoading(false)
       }, 1000) // дана секунда для подгрузки картинок
     }
-  }, [page, perPage])
+  }, [page, ])
 
   React.useEffect(() => {
     getAll()
-  }, [page, perPage, getAll])
+  }, [page, getAll])
 
   return {
-    actions: {
-      setPage,
-      setPerPage,
-    },
     isLoading,
     allGoods,
+    page,
   }
 }
 

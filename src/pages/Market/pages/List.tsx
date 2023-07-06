@@ -3,6 +3,7 @@ import { Market } from '..'
 import Card from 'components/Card'
 import PageTitle from 'components/PageTitle'
 import CardSkeleton from 'components/Skeleton/Card'
+import Pagination from 'components/Pagination'
 
 export const List = () => {
   const {
@@ -23,6 +24,8 @@ export const List = () => {
             : allGoods.map(good => <Card good={good} key={good.id} />)
         }
       </div>
+
+      <Pagination />
     </>
   )
 }
