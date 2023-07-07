@@ -4,5 +4,13 @@ export namespace GoodTypes {
     name: string
     description: string
     image_url: string
+    abv: number
+    attenuation_level: number
+    volume: {
+      unit: string
+      value: number
+    }
+    food_pairing: string[]
+    tagline: string
   }
 }

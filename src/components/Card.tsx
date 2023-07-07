@@ -3,18 +3,22 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { appSlice } from 'store/reducers/appSlice'
 import { GoodTypes } from 'types/good'
 import { BsCartPlus, BsStarFill, BsStarHalf, BsCartXFill } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   good: GoodTypes.Card
 }
 
 const Card: React.FC<Props> = ({ good }) => {
-  const { addToBucket, removeFromBucket } = appSlice.actions
-  const dispatch = useAppDispatch()
-  const bucket = useAppSelector((state) => state.appSlice.bucket)
   const { name, image_url, id } = good
-
+  
+  const bucket = useAppSelector((state) => state.appSlice.bucket)
   const [goodInBucket, setGoodInBucket] = React.useState(() => bucket.includes(id))
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const { addToBucket, removeFromBucket } = appSlice.actions
+
 
   React.useEffect(() => {
     setGoodInBucket(bucket.includes(id))
@@ -28,6 +32,7 @@ const Card: React.FC<Props> = ({ good }) => {
     dispatch(removeFromBucket(id))
   }
 
+  const goToSingle = () => navigate(`/market/${name}`)
   const price = React.useMemo(() => (Math.random() * 3).toFixed(2), [])
   const rating = React.useMemo(() => Math.floor(Math.random() * (1000 - 100) + 100), [])
 
@@ -38,6 +43,7 @@ const Card: React.FC<Props> = ({ good }) => {
           className="w-full h-48 object-contain"
           src={image_url}
           alt={name}
+          onClick={goToSingle}
         />
       </div>
       <div className="p-1 tablet:p-2 laptop:px-3">

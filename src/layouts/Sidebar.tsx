@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { HiMiniBars3 } from 'react-icons/hi2'
 import { BsCart3 } from 'react-icons/bs'
 import { useAppSelector } from 'hooks/redux'
+import Search from 'components/Search'
 
 
 interface LinkType {
@@ -52,11 +53,7 @@ const Sidebar = ({ children }: Props) => {
           <div className="hidden tablet:block text-xl tracking-wider font-semibold">Beer-Shop</div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Search..."
-          className="bg-slate-200 rounded-md phone:w-3/4 mx-4 tablet:w-2/4 px-4 py-1 outline-blue-400"
-        />
+        <Search />
 
         <div className="text-3xl flex items-center space-x-4">
           <button
@@ -79,7 +76,7 @@ const Sidebar = ({ children }: Props) => {
           className={`${isOpen ? 'w-full h-screen' : ''} fixed top-0 left-0 bg-black/20`}
           onClick={toggleMenu}
         />
-        
+
         <div className={`${isOpen ? 'left-0' : '-left-64'} px-2 py-4 bg-white top-0 w-64 h-screen duration-150 fixed`}>
           <nav className="flex flex-col space-y-3 text-lg">
             {links.map(({ to, id, title }) => (
