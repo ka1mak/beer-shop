@@ -10,11 +10,11 @@ const Pagination: React.FC = () => {
 
   return (
     <div className="flex phone:p-3 tablet:justify-center">
-      <div className="flex tablet:w-1/2 phone:w-full ">
+      <div className="flex tablet:w-1/2 phone:w-full space-x-2">
         {pages.map(page => (
           <div
             key={page}
-            className={`flex-1 text-center rounded-md font-bold ${currentPage === page ? 'bg-slate-500 text-white' : ''}`}
+            className={`cursor-pointer flex-1 text-center rounded-md font-bold ${currentPage === page ? 'bg-slate-500 text-white' : ''}`}
             onClick={() => dispatch(setCurrentPage(page))}
           >{page}</div>
         ))}

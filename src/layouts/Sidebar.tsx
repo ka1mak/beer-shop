@@ -55,7 +55,7 @@ const Sidebar = ({ children }: Props) => {
         <input
           type="text"
           placeholder="Search..."
-          className="bg-slate-200 rounded-md phone:w-3/4 phone:mx-4 tablet:w-2/4 px-4 py-1"
+          className="bg-slate-200 rounded-md phone:w-3/4 mx-4 tablet:w-2/4 px-4 py-1 outline-blue-400"
         />
 
         <div className="text-3xl flex items-center space-x-4">
