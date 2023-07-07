@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Sidebar from 'layouts/Sidebar'
+
 import { Market } from './Market'
 import { Bucket } from './Bucket'
+
+import Sidebar from 'layouts/Sidebar'
 import Footer from 'layouts/Footer'
 
 const MainLayout = () => {

@@ -1,27 +1,32 @@
 import React from 'react'
+import { useAppSelector } from 'hooks/redux'
+
 import { Bucket } from '..'
 
-import CardSkeleton from 'components/Skeleton'
-import PageTitle from 'components/PageTitle'
-import Card from 'components/Card'
+import {
+  Skeleton,
+  PageTitle,
+  Grid,
+  Card,
+} from 'components'
 
 export const List = () => {
   const { goods, isLoading } = Bucket.Hooks.List.use()
+  const bucket = useAppSelector(state => state.appSlice.bucket)
 
-  const loader = () => goods.map(({ id }) => <CardSkeleton key={id} />)
-  console.log(goods)
+  const loader = () => [...new Array(bucket.length)].map((_, i) => <Skeleton key={i} />)
 
   return (
     <div className="min-h-screen">
       <PageTitle title="Корзина" path="Bucket /" />
 
-      <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
+      <Grid>
         {
           isLoading
             ? loader()
             : goods.map(good => <Card good={good} key={good.id} />)
         }
-      </div>
+      </Grid>
     </div>
   )
 }

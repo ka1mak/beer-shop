@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import React from 'react'
+import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { appSlice } from 'store/reducers/appSlice'
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
   const currentPage = useAppSelector(state => state.appSlice.currentPage)
   const dispatch = useAppDispatch()
   const { setCurrentPage } = appSlice.actions

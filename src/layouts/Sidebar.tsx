@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { HiMiniBars3 } from 'react-icons/hi2'
 import { BsCart3 } from 'react-icons/bs'
+import { useAppSelector } from 'hooks/redux'
 
 
 interface LinkType {
@@ -31,6 +32,7 @@ interface Props {
 const Sidebar = ({ children }: Props) => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
+  const bucket = useAppSelector(state => state.appSlice.bucket)
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -57,7 +59,17 @@ const Sidebar = ({ children }: Props) => {
         />
 
         <div className="text-3xl flex items-center space-x-4">
-          <button onClick={goToBucket}><BsCart3 /></button>
+          <button
+            onClick={goToBucket}
+            className="relative"
+          >
+            <BsCart3 />
+            <div className="absolute -right-3 -top-3 text-sm text-white">
+              <div className="bg-orange-400 px-2 py-1 rounded-full leading-none">
+                {bucket.length}
+              </div>
+            </div>
+          </button>
           <button onClick={toggleMenu}><HiMiniBars3 /></button>
         </div>
       </div>
