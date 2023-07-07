@@ -65,8 +65,8 @@ const Sidebar = ({ children }: Props) => {
           >
             <BsCart3 />
             <div className="absolute -right-3 -top-3 text-sm text-white">
-              <div className="bg-orange-400 px-2 py-1 rounded-full leading-none">
-                {bucket.length}
+              <div className="bg-orange-400 rounded-full leading-none">
+                {bucket.length ? <div className="px-2 py-1">{bucket.length}</div> : ''}
               </div>
             </div>
           </button>
@@ -79,6 +79,7 @@ const Sidebar = ({ children }: Props) => {
           className={`${isOpen ? 'w-full h-screen' : ''} fixed top-0 left-0 bg-black/20`}
           onClick={toggleMenu}
         />
+        
         <div className={`${isOpen ? 'left-0' : '-left-64'} px-2 py-4 bg-white top-0 w-64 h-screen duration-150 fixed`}>
           <nav className="flex flex-col space-y-3 text-lg">
             {links.map(({ to, id, title }) => (
