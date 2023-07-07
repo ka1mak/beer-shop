@@ -22,16 +22,16 @@ const links: LinkType[] = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-800 text-white phone:px-2 py-10 laptop:px-10">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <img className="w-8 h-8 mr-2" src="/logo.png" alt="Logo" />
-          <span className="font-bold text-lg">Beer-Shop</span>
+          <span className="font-bold phone:text-sm tablet:text-lg">Beer-Shop</span>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex tablet:space-x-4 tablet:text-lg phone:text-sm phone:space-x-1">
           {links.map(({ to, id, title }) => (
             <NavLink
-              className="px-2 py-px rounded-md hover:text-gray-300"
+              className="hover:text-gray-300"
               key={id}
               to={to}
             >{title}</NavLink>

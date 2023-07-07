@@ -17,7 +17,7 @@ export const List = () => {
     <div className="min-h-screen">
       <PageTitle title="Список товаров" path="Market/" />
 
-      <div className="flex flex-wrap justify-center p-1 tablet:p-4 laptop:px-10">
+      <div className="grid gap-2 py-2 phone:px-p1 tablet:px-2 phone:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-5">
         {
           isLoading
             ? loader()

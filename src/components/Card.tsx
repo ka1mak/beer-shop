@@ -32,7 +32,7 @@ const Card: React.FC<Props> = ({ good }) => {
   const rating = React.useMemo(() => Math.floor(Math.random() * (1000 - 100) + 100), [])
 
   return (
-    <div className="mb-2 mx-1">
+    <div className="">
       <div className="bg-slate-50 p-2 rounded-md">
         <div className="bg-white rounded-md p-2">
           <img
