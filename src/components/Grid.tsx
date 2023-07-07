@@ -6,7 +6,7 @@ interface Props {
 
 const Grid: React.FC<Props> = ({ children }) => {
   return (
-    <div className="grid gap-2 py-2 phone:px-p1 tablet:px-2 laptop:px-4 phone:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-5">
+    <div className="grid gap-2 py-2 phone:px-1 tablet:px-2 laptop:px-4 phone:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-5">
       {children}
     </div>
   )
