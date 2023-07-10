@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Market } from '..'
-import { Card, Grid, PageTitle } from 'components'
+import { PageTitle, Slider } from 'components'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { appSlice } from 'store/reducers/appSlice'
 import { GoodTypes } from 'types/good'
@@ -42,11 +42,9 @@ export const Single = () => {
     return (
       <div className="mt-5 phone:px-1 tablet:px-3 laptop:px-10">
         <div className="text-xl border-b border-slate-500 px-4 py-1 font-semibold">{title}</div>
-        <Grid>
-          {goodsArray.map(good => (
-            <Card good={good} key={good.id} />
-          ))}
-        </Grid>
+        <div className="py-2">
+          <Slider goods={goodsArray} />
+        </div>
       </div>
     )
   }
