@@ -1,30 +1,9 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-
-import { HiMiniBars3 } from 'react-icons/hi2'
-import { BsCart3 } from 'react-icons/bs'
 import { useAppSelector } from 'hooks/redux'
+
+import { BsShop, BsCart3 } from 'react-icons/bs'
 import Search from 'components/Search'
-
-
-interface LinkType {
-  to: string
-  title: string
-  id: number
-}
-
-const links: LinkType[] = [
-  {
-    to: '/market',
-    title: 'Market',
-    id: 1,
-  },
-  {
-    to: '/bucket',
-    title: 'Bucket',
-    id: 2,
-  },
-]
 
 interface Props {
   children: React.ReactNode
@@ -32,62 +11,42 @@ interface Props {
 
 const Sidebar = ({ children }: Props) => {
   const navigate = useNavigate()
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
-  const bucket = useAppSelector(state => state.appSlice.bucket)
+  const bucket = useAppSelector((state) => state.appSlice.bucket)
 
-  const toggleMenu = () => setIsOpen(!isOpen)
-
-  const goToMain = () => navigate('/market')
-  const goToBucket = () => navigate('/bucket')
+  const goToMarket = () => navigate('/market')
 
   return (
     <>
       <div className="flex justify-between items-center px-4 tablet:px-6 py-2 border-b">
         <div className="flex items-center space-x-4">
           <img
-            onClick={goToMain}
+            onClick={goToMarket}
             src="./logo.png"
             className="w-14"
             alt="logotype"
           />
-          <div className="hidden tablet:block text-xl tracking-wider font-semibold">Beer-Shop</div>
+          <div className="hidden tablet:block text-xl tracking-wider font-semibold">
+            Beer-Shop
+          </div>
         </div>
 
         <Search />
 
         <div className="text-3xl flex items-center space-x-4">
-          <button
-            onClick={goToBucket}
-            className="relative"
-          >
-            <BsCart3 />
-            <div className="absolute -right-3 -top-3 text-sm text-white">
-              <div className="bg-orange-400 rounded-full leading-none">
-                {bucket.length ? <div className="px-2 py-1">{bucket.length}</div> : ''}
+          <NavLink to="/bucket" className="relative">
+            {bucket.length !== 0 && (
+              <div className="absolute -right-3 -top-3">
+                <div className="text-sm text-white bg-orange-400 rounded-full leading-none px-2 py-1">
+                  {bucket.length}
+                </div>
               </div>
-            </div>
-          </button>
-          <button onClick={toggleMenu}><HiMiniBars3 /></button>
-        </div>
-      </div>
+            )}
+            <BsCart3 />
+          </NavLink>
 
-      <div>
-        <div
-          className={`${isOpen ? 'w-full h-screen' : ''} fixed top-0 left-0 bg-black/20`}
-          onClick={toggleMenu}
-        />
-
-        <div className={`${isOpen ? 'left-0' : '-left-64'} px-2 py-4 bg-white top-0 w-64 h-screen duration-150 fixed`}>
-          <nav className="flex flex-col space-y-3 text-lg">
-            {links.map(({ to, id, title }) => (
-              <NavLink
-                className={({ isActive }) => `${isActive ? 'bg-blue-300' : ''} px-2 py-px rounded-md`}
-                key={id}
-                to={to}
-                onClick={toggleMenu}
-              >{title}</NavLink>
-            ))}
-          </nav>
+          <NavLink to="/market">
+            <BsShop />
+          </NavLink>
         </div>
       </div>
 
