@@ -32,6 +32,7 @@ export const List = () => {
       <NavLink to="/market" className="border-b border-slate-500 cursor-pointer">
         {' '}
         каталог
+        {' '}
       </NavLink>
       и добавьте товар
     </div>

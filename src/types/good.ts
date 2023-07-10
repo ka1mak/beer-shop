@@ -3,6 +3,7 @@ export namespace GoodTypes {
     id: number
     name: string
     description: string
+    price: number
     image_url: string
     abv: number
     attenuation_level: number
