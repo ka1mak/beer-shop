@@ -6,7 +6,11 @@ const Pagination: React.FC = () => {
   const currentPage = useAppSelector(state => state.appSlice.currentPage)
   const dispatch = useAppDispatch()
   const { setCurrentPage } = appSlice.actions
-  const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  const pages = Array.from({ length: 11 }, (_, index) => index + 1)
+
+  const handlePageClick = (page: number) => {
+    dispatch(setCurrentPage(page))
+  }
 
   return (
     <div className="flex phone:p-3 tablet:justify-center">
@@ -15,8 +19,10 @@ const Pagination: React.FC = () => {
           <div
             key={page}
             className={`cursor-pointer flex-1 text-center rounded-md font-bold ${currentPage === page ? 'bg-slate-500 text-white' : ''}`}
-            onClick={() => dispatch(setCurrentPage(page))}
-          >{page}</div>
+            onClick={() => handlePageClick(page)}
+          >
+            {page}
+          </div>
         ))}
       </div>
     </div>

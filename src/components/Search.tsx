@@ -20,8 +20,7 @@ const Search = () => {
 
   React.useEffect(() => {
     if (search) {
-      searchBeer(search)
-        .then(data => setFoundBeer(data))
+      searchBeer(search).then(data => setFoundBeer(data))
     } else {
       handleClose()
     }
@@ -37,22 +36,17 @@ const Search = () => {
         onChange={e => setSearch(e.target.value)}
       />
 
-      {
-        foundBeer.length
-          ? (
-            <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full">
-              <div className="bg-slate-400 p-2 space-y-1 rounded-md">
-                {foundBeer.map(({ name, id }) => (
-                  <div
-                    key={id}
-                    onClick={() => goToBeer(name)}
-                  >{name}</div>
-                ))}
+      {foundBeer.length > 0 && (
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full">
+          <div className="bg-slate-400 p-2 space-y-1 rounded-md">
+            {foundBeer.map(({ name, id }) => (
+              <div key={id} onClick={() => goToBeer(name)}>
+                {name}
               </div>
-            </div>
-          )
-          : ''
-      }
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

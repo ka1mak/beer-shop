@@ -9,23 +9,20 @@ import {
 } from 'components'
 
 export const List = () => {
-  const {
-    isLoading,
-    allGoods,
-  } = Market.Hooks.List.use()
+  const { isLoading, allGoods } = Market.Hooks.List.use()
+
+  const renderGoods = () => {
+    if (isLoading) {
+      return Array.from({ length: 30 }, (_, index) => <Skeleton key={index} />)
+    } else {
+      return allGoods.map(good => <Card good={good} key={good.id} />)
+    }
+  }
 
   return (
     <div className="min-h-screen">
       <PageTitle title="Список товаров" path="Market/" />
-
-      <Grid>
-        {
-          isLoading
-            ? [...new Array(30)].map((_, i) => <Skeleton key={i} />)
-            : allGoods.map(good => <Card good={good} key={good.id} />)
-        }
-      </Grid>
-
+      <Grid>{renderGoods()}</Grid>
       <Pagination />
     </div>
   )

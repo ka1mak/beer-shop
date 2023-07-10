@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Market } from '..'
 import { Card, Grid, PageTitle } from 'components'
@@ -10,11 +10,11 @@ export const Single = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { isLoading, goodsGreater, goodsMilder, goods } = Market.Hooks.Single.use()
-  const bucket = useAppSelector((state) => state.appSlice.bucket)
+  const bucket = useAppSelector(state => state.appSlice.bucket)
   const { addToBucket, removeFromBucket } = appSlice.actions
-  const [goodInBucket, setGoodInBucket] = useState(false)
+  const [goodInBucket, setGoodInBucket] = React.useState(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (goods && goods.id) {
       setGoodInBucket(bucket.includes(goods.id))
     }
@@ -42,9 +42,8 @@ export const Single = () => {
     return (
       <div className="mt-5 phone:px-1 tablet:px-3 laptop:px-10">
         <div className="text-xl border-b border-slate-500 px-4 py-1 font-semibold">{title}</div>
-
         <Grid>
-          {goodsArray.map((good) => (
+          {goodsArray.map(good => (
             <Card good={good} key={good.id} />
           ))}
         </Grid>
