@@ -39,13 +39,16 @@ const Slider = ({ goods }: Props) => {
   }
 
   return (
-    <Swiper className="mySwiper" {...sliderSettings}>
-      {goods.map((good) => (
-        <SwiperSlide key={good.id}>
-          <Card good={good} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div>
+      <div className="text-sm text-slate-500">Листай дальше для просмотра</div>
+      <Swiper className="mySwiper" {...sliderSettings}>
+        {goods.map((good) => (
+          <SwiperSlide key={good.id}>
+            <Card good={good} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   )
 }
 
